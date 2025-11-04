@@ -1,71 +1,130 @@
+/* DashboardCharts.css — improved layout, accessibility, and responsiveness */
+
+/* Use root variables when available, fall back to sensible defaults */
 .charts-container {
   width: 100%;
   padding: 8px 0;
+  box-sizing: border-box;
 }
 
+/* Chart card base */
 .chart-card {
-  background: white;
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-left: 4px solid #6A1B9A;
+  background: var(--card-bg, #fff);
+  border-radius: var(--card-radius, 12px);
+  transition: box-shadow 220ms ease, transform 220ms ease;
+  border-left: var(--card-border-left, 4px) solid var(--accent, #6A1B9A);
+  overflow: hidden;       /* prevent children from visually overflowing and overlapping siblings */
+  min-width: 0;           /* allow flex/grid children to shrink correctly */
+  will-change: transform;
 }
 
+/* Hover lift (no scale) to avoid overlap with neighbors */
 .chart-card:hover {
-  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.15) !important;
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover, 0 8px 24px rgba(106, 27, 154, 0.15));
+  transform: translateY(-6px);
+  z-index: 2;
 }
 
-.chart-card CardHeader {
-  border-bottom: 1px solid #f0f0f0;
+/* Target common header DOMs used by MUI / plain markup */
+.chart-card .MuiCardHeader-root,
+.chart-card .card-header,
+.chart-card .cardHeader {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
   padding-bottom: 16px;
+  margin-bottom: 12px;
 }
 
-/* Stats Card Grid */
+/* Stats Card Grid / background */
 .stats-card {
   background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  padding: 12px;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
+/* Individual stat box */
 .stat-box {
   padding: 16px;
-  background: white;
+  background: var(--card-bg, #fff);
   border-radius: 8px;
   text-align: center;
-  border-top: 3px solid #6A1B9A;
-  transition: transform 0.2s ease;
+  border-top: 3px solid var(--accent, #6A1B9A);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+  min-width: 0;
 }
 
+/* Hover effect for stat box (subtle) */
 .stat-box:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.1);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.08);
 }
 
+/* Headings inside stat box */
 .stat-box h4 {
   margin: 8px 0;
+  font-weight: 600;
+  color: var(--text-color, #333);
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments: thinner border-left on smaller screens */
 @media (max-width: 960px) {
   .chart-card {
-    border-left: 3px solid #6A1B9A;
+    border-left-width: 3px;
   }
 }
 
+/* Smaller screens: reduce paddings and font-sizes to avoid overflow */
 @media (max-width: 600px) {
   .stat-box {
     padding: 12px;
   }
 
   .stat-box h4 {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .charts-container {
+    padding: 6px 0;
   }
 }
 
-/* Tooltip and Legend customization */
+/* Tooltip and legend styling - more specific to avoid needing !important */
 .recharts-tooltip {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 8px 10px;
+  background: #fff;
+  color: #222;
 }
 
-.recharts-legend-wrapper {
-  padding-top: 20px !important;
+/* Apply spacing for legend inside chart-card specifically */
+.chart-card .recharts-legend-wrapper {
+  margin-top: 20px;
+  padding: 0;
 }
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .chart-card,
+  .stat-box,
+  .charts-container {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Ensure SVG/chart containers don't cause horizontal overflow */
+.chart-card .chart-inner,
+.chart-card svg,
+.chart-card canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Minor helpers */
+.text-center { text-align: center; }
+.no-select { user-select: none; -webkit-user-select: none; -ms-user-select: none; }
+
+/* End of improved DashboardCharts.css */

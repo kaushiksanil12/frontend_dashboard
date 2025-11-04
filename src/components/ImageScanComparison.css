@@ -1,14 +1,35 @@
+/* ImageScanComparison.css — cleaned, formatted, responsive, accessible */
+
+/* Use root variables when available, fallback to sensible values */
 .comparison-card {
-  background: white;
-  border-radius: 12px;
-  border-left: 4px solid #6A1B9A;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--card-bg, #fff);
+  border-radius: var(--card-radius, 12px);
+  border-left: var(--card-border-left, 4px) solid var(--accent, #6A1B9A);
+  padding: 18px;
+  box-sizing: border-box;
+  transition: box-shadow 220ms ease, transform 220ms ease;
   height: 100%;
+  overflow: hidden;   /* prevent inner overflow from overlapping siblings */
+  min-width: 0;       /* allow flex/grid children to shrink correctly */
+  will-change: transform;
 }
 
+/* Hover lift (no scale) to avoid overlap with neighbors */
 .comparison-card:hover {
-  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.15) !important;
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover, 0 8px 24px rgba(106, 27, 154, 0.15));
+  transform: translateY(-6px);
+  z-index: 2;
+}
+
+/* Responsive image/media handling inside the comparison card */
+.comparison-card img,
+.comparison-card video,
+.comparison-card canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 /* Stats Summary */
@@ -16,19 +37,24 @@
   background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
   padding: 12px;
   border-radius: 8px;
-  border-left: 3px solid #6A1B9A;
+  border-left: 3px solid var(--accent, #6A1B9A);
   text-align: center;
-  transition: transform 0.2s ease;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 
 .stat-summary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.10);
 }
 
 .stat-summary h6 {
-  margin: 4px 0;
-  font-size: 1.25rem;
+  margin: 6px 0;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--text-color, #333);
 }
 
 /* Top Painting Highlight */
@@ -36,36 +62,76 @@
   background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%);
   border: 1px solid #e1bee7;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  padding: 12px;
+  transition: box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
+  overflow: hidden;
 }
 
 .top-painting-box:hover {
-  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.12);
+  box-shadow: 0 6px 18px rgba(106, 27, 154, 0.12);
   border-color: #ce93d8;
+  transform: translateY(-3px);
 }
 
 /* Chart Tooltip */
 .recharts-tooltip {
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  padding: 8px 10px;
+  background: var(--tooltip-bg, #fff);
+  color: var(--tooltip-color, #222);
+  font-size: 0.95rem;
+  line-height: 1.2;
 }
 
-.recharts-legend-wrapper {
-  padding-top: 20px !important;
+/* Legend wrapper scoped to comparison card to avoid global !important usage */
+.comparison-card .recharts-legend-wrapper {
+  padding-top: 18px;
+  margin-top: 6px;
+}
+
+/* Ensure chart SVG/canvas don't cause horizontal scroll */
+.comparison-card svg,
+.comparison-card canvas,
+.comparison-card .chart-inner {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .comparison-card,
+  .stat-summary,
+  .top-painting-box,
+  .recharts-tooltip {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* Responsive */
 @media (max-width: 960px) {
   .comparison-card {
-    border-left: 3px solid #6A1B9A;
+    border-left-width: 3px;
+    padding: 14px;
   }
 
   .stat-summary {
     padding: 10px;
   }
+
+  .top-painting-box {
+    padding: 10px;
+  }
 }
 
 @media (max-width: 600px) {
+  .comparison-card {
+    padding: 10px;
+  }
+
   .stat-summary {
     padding: 8px;
   }
@@ -75,12 +141,12 @@
   }
 
   .top-painting-box {
-    padding: 12px !important;
+    padding: 10px;
   }
 }
 
-/* Animation */
-@keyframes fadeIn {
+/* Local animation (renamed to avoid collisions with global animations) */
+@keyframes fadeInComparison {
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -92,5 +158,9 @@
 }
 
 .comparison-card {
-  animation: fadeIn 0.4s ease-in;
+  animation: fadeInComparison 360ms ease both;
 }
+
+/* Utility helpers used in this component */
+.is-centered { text-align: center; }
+.no-select { user-select: none; -webkit-user-select: none; -ms-user-select: none; }
