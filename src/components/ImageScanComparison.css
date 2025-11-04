@@ -1,0 +1,96 @@
+.comparison-card {
+  background: white;
+  border-radius: 12px;
+  border-left: 4px solid #6A1B9A;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+}
+
+.comparison-card:hover {
+  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+/* Stats Summary */
+.stat-summary {
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 3px solid #6A1B9A;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.stat-summary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.1);
+}
+
+.stat-summary h6 {
+  margin: 4px 0;
+  font-size: 1.25rem;
+}
+
+/* Top Painting Highlight */
+.top-painting-box {
+  background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%);
+  border: 1px solid #e1bee7;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.top-painting-box:hover {
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.12);
+  border-color: #ce93d8;
+}
+
+/* Chart Tooltip */
+.recharts-tooltip {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.recharts-legend-wrapper {
+  padding-top: 20px !important;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .comparison-card {
+    border-left: 3px solid #6A1B9A;
+  }
+
+  .stat-summary {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stat-summary {
+    padding: 8px;
+  }
+
+  .stat-summary h6 {
+    font-size: 1rem;
+  }
+
+  .top-painting-box {
+    padding: 12px !important;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.comparison-card {
+  animation: fadeIn 0.4s ease-in;
+}

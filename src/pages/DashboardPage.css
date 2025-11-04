@@ -1,0 +1,602 @@
+/* ============================================
+   DASHBOARD WRAPPER & BACKGROUND
+   ============================================ */
+
+.dashboard-wrapper {
+  min-height: 100vh;
+  padding: 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  transition: background 0.3s ease;
+}
+
+/* ============================================
+   HEADER SECTION
+   ============================================ */
+
+.dashboard-header {
+  animation: slideDown 0.6s ease-out;
+}
+
+.dashboard-header h3 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   CARD STYLING - UNIVERSAL
+   ============================================ */
+
+.dashboard-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(106, 27, 154, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.5s ease-in;
+  border-left: 4px solid #6A1B9A;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-card:hover {
+  box-shadow: 0 8px 32px rgba(106, 27, 154, 0.15);
+  transform: translateY(-4px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   STAT ITEMS - PAINTING STATS
+   ============================================ */
+
+.stat-item {
+  padding: 12px;
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border-top: 2px solid transparent;
+}
+
+.stat-item:hover {
+  background: linear-gradient(135deg, #f5f5f5 0%, #f0f0f0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.08);
+}
+
+.stat-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.stat-item:hover .stat-icon {
+  transform: scale(1.1);
+}
+
+.stat-label {
+  display: block;
+  color: #666;
+  font-size: 0.75rem;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  margin: 0;
+  font-weight: 700;
+}
+
+.stat-unit {
+  font-size: 0.8em;
+  margin-left: 4px;
+  opacity: 0.7;
+}
+
+.stat-progress {
+  margin-top: 8px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.breakdown-item {
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  border-left: 3px solid;
+  transition: all 0.2s ease;
+}
+
+.breakdown-item.success {
+  border-left-color: #4CAF50;
+}
+
+.breakdown-item.error {
+  border-left-color: #F44336;
+}
+
+.breakdown-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.performance-summary {
+  padding: 12px;
+  background: linear-gradient(135deg, #f0f7ff 0%, #f0f0ff 100%);
+  border-radius: 8px;
+  border-left: 3px solid #2196F3;
+}
+
+.summary-item {
+  padding: 8px;
+  background: white;
+  border-radius: 6px;
+  text-align: center;
+  transition: all 0.2s ease;
+  border-top: 2px solid #e0e0e0;
+}
+
+.summary-item:hover {
+  border-top-color: #6A1B9A;
+  box-shadow: 0 2px 8px rgba(106, 27, 154, 0.1);
+}
+
+/* ============================================
+   CHART CARDS
+   ============================================ */
+
+.chart-card {
+  background: white;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 4px solid #6A1B9A;
+}
+
+.chart-card:hover {
+  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+.stats-card {
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+}
+
+.stat-box {
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  text-align: center;
+  border-top: 3px solid #6A1B9A;
+  transition: transform 0.2s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.1);
+}
+
+.stat-box h4 {
+  margin: 8px 0;
+}
+
+/* ============================================
+   COMPARISON CARD
+   ============================================ */
+
+.comparison-card {
+  background: white;
+  border-radius: 12px;
+  border-left: 4px solid #6A1B9A;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  animation: slideInUp 0.5s ease-out;
+}
+
+.comparison-card:hover {
+  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-summary {
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 3px solid #6A1B9A;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.stat-summary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.1);
+}
+
+.top-painting-box {
+  background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%);
+  border: 1px solid #e1bee7;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.top-painting-box:hover {
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.12);
+  border-color: #ce93d8;
+}
+
+/* ============================================
+   PAINTINGS CARD - TOP SCANNED
+   ============================================ */
+
+.paintings-card {
+  background: white;
+  border-radius: 12px;
+  border-left: 4px solid #6A1B9A;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  animation: slideInUp 0.5s ease-out;
+}
+
+.paintings-card:hover {
+  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+.paintings-list {
+  padding: 0;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.paintings-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.paintings-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.paintings-list::-webkit-scrollbar-thumb {
+  background: #6A1B9A;
+  border-radius: 3px;
+}
+
+.paintings-list::-webkit-scrollbar-thumb:hover {
+  background: #8b2fa8;
+}
+
+.painting-item {
+  position: relative;
+  animation: fadeInUp 0.4s ease-out backwards;
+}
+
+.painting-item.rank-0 {
+  animation-delay: 0s;
+  background: linear-gradient(135deg, #fffef0 0%, #fffdf5 100%);
+  border-left: 3px solid #FFD700 !important;
+}
+
+.painting-item.rank-1 {
+  animation-delay: 0.1s;
+  background: linear-gradient(135deg, #fefefe 0%, #fafafa 100%);
+  border-left: 3px solid #C0C0C0 !important;
+}
+
+.painting-item.rank-2 {
+  animation-delay: 0.2s;
+  background: linear-gradient(135deg, #fefdf5 0%, #faf8f5 100%);
+  border-left: 3px solid #CD7F32 !important;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scan-progress {
+  transition: all 0.3s ease;
+}
+
+.painting-item:hover .scan-progress {
+  height: 8px !important;
+}
+
+.paintings-footer {
+  background: linear-gradient(135deg, #f9f9f9 0%, #f5f5f5 100%);
+  padding: 12px !important;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.paintings-footer strong {
+  color: #6A1B9A;
+  font-weight: 600;
+}
+
+/* ============================================
+   RECHARTS UNIVERSAL
+   ============================================ */
+
+.recharts-tooltip {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.recharts-legend-wrapper {
+  padding-top: 20px !important;
+}
+
+.charts-container {
+  width: 100%;
+  padding: 8px 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .dashboard-wrapper {
+    padding: 16px;
+  }
+
+  .dashboard-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 960px) {
+  .dashboard-header h3 {
+    font-size: 2rem;
+  }
+
+  .dashboard-card {
+    border-left: 3px solid #6A1B9A;
+    padding: 16px;
+  }
+
+  .chart-card {
+    border-left: 3px solid #6A1B9A;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .paintings-list {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-wrapper {
+    padding: 8px;
+  }
+
+  .dashboard-header {
+    py: 2 !important;
+    mb: 2 !important;
+  }
+
+  .dashboard-header h3 {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+
+  .dashboard-card {
+    border-left: 2px solid #6A1B9A;
+    padding: 12px;
+  }
+
+  .stat-item {
+    padding: 8px;
+  }
+
+  .stat-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .stat-box {
+    padding: 12px;
+  }
+
+  .stat-box h4 {
+    font-size: 1.5rem;
+  }
+
+  .summary-item {
+    padding: 6px;
+  }
+
+  .paintings-list {
+    max-height: 400px;
+  }
+
+  .painting-item {
+    padding: 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .top-painting-box {
+    padding: 12px !important;
+  }
+
+  .MuiBadge-root {
+    display: none;
+  }
+
+  .top-painting-box {
+    padding: 12px !important;
+  }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .dashboard-wrapper {
+    background: linear-gradient(135deg, #303030 0%, #1a1a1a 100%);
+  }
+
+  .dashboard-card,
+  .chart-card,
+  .comparison-card,
+  .paintings-card {
+    background: #424242;
+    color: #fff;
+  }
+
+  .stat-item,
+  .summary-item,
+  .breakdown-item {
+    background-color: #555 !important;
+    color: #fff;
+  }
+
+  .stat-label {
+    color: #bdbdbd;
+  }
+
+  .stat-item:hover,
+  .summary-item:hover,
+  .breakdown-item:hover {
+    background-color: #616161 !important;
+  }
+
+  .paintings-list::-webkit-scrollbar-track {
+    background: #555;
+  }
+
+  .paintings-list::-webkit-scrollbar-thumb {
+    background: #AB47BC;
+  }
+
+  .painting-item {
+    background-color: #555 !important;
+    border-color: #666 !important;
+  }
+
+  .painting-item:hover {
+    background-color: #616161 !important;
+  }
+
+  .paintings-footer {
+    background: linear-gradient(135deg, #555 0%, #4a4a4a 100%) !important;
+  }
+
+  .performance-summary {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%) !important;
+  }
+
+  .recharts-tooltip {
+    background-color: #424242 !important;
+    border-color: #AB47BC !important;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

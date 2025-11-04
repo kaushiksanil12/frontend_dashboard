@@ -1,0 +1,190 @@
+.paintings-card {
+  background: white;
+  border-radius: 12px;
+  border-left: 4px solid #6A1B9A;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  animation: slideInUp 0.5s ease-out;
+}
+
+.paintings-card:hover {
+  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Paintings List */
+.paintings-list {
+  padding: 0;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Scroll Bar Styling */
+.paintings-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.paintings-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.paintings-list::-webkit-scrollbar-thumb {
+  background: #6A1B9A;
+  border-radius: 3px;
+}
+
+.paintings-list::-webkit-scrollbar-thumb:hover {
+  background: #8b2fa8;
+}
+
+/* Painting Items */
+.painting-item {
+  position: relative;
+  animation: fadeInUp 0.4s ease-out backwards;
+}
+
+.painting-item.rank-0 {
+  animation-delay: 0s;
+}
+
+.painting-item.rank-1 {
+  animation-delay: 0.1s;
+}
+
+.painting-item.rank-2 {
+  animation-delay: 0.2s;
+}
+
+.painting-item.rank-3 {
+  animation-delay: 0.3s;
+}
+
+.painting-item.rank-4 {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress Bar */
+.scan-progress {
+  transition: all 0.3s ease;
+}
+
+.painting-item:hover .scan-progress {
+  height: 8px !important;
+}
+
+/* Paintings Footer */
+.paintings-footer {
+  background: linear-gradient(135deg, #f9f9f9 0%, #f5f5f5 100%);
+  padding: 12px !important;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.paintings-footer strong {
+  color: #6A1B9A;
+  font-weight: 600;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 960px) {
+  .paintings-card {
+    border-left: 3px solid #6A1B9A;
+  }
+
+  .paintings-list {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 600px) {
+  .paintings-card {
+    border-left: 2px solid #6A1B9A;
+  }
+
+  .painting-item {
+    margin-bottom: 12px !important;
+    padding: 12px !important;
+  }
+
+  .paintings-list {
+    max-height: 400px;
+  }
+
+  /* Hide badge on mobile */
+  .MuiBadge-root {
+    display: none;
+  }
+
+  /* Stack rank and count differently */
+  .painting-item {
+    flex-wrap: wrap;
+  }
+}
+
+/* Top Three Special Styling */
+.painting-item.rank-0 {
+  background: linear-gradient(135deg, #fffef0 0%, #fffdf5 100%);
+  border-left: 3px solid #FFD700;
+}
+
+.painting-item.rank-1 {
+  background: linear-gradient(135deg, #fefefe 0%, #fafafa 100%);
+  border-left: 3px solid #C0C0C0;
+}
+
+.painting-item.rank-2 {
+  background: linear-gradient(135deg, #fefdf5 0%, #faf8f5 100%);
+  border-left: 3px solid #CD7F32;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .paintings-card {
+    background: #424242;
+    color: #fff;
+  }
+
+  .painting-item {
+    background-color: #555 !important;
+    border-color: #666 !important;
+  }
+
+  .painting-item:hover {
+    background-color: #616161 !important;
+  }
+
+  .paintings-list::-webkit-scrollbar-track {
+    background: #555;
+  }
+
+  .paintings-list::-webkit-scrollbar-thumb {
+    background: #AB47BC;
+  }
+
+  .paintings-footer {
+    background: linear-gradient(135deg, #555 0%, #4a4a4a 100%) !important;
+  }
+}
